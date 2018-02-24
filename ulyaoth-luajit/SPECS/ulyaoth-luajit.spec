@@ -9,7 +9,7 @@ License:    mit
 Group:      Applications/Internet
 URL:        https://luajit.org/
 Vendor:     Mike Pall
-Packager:   Sjir Bagmeijer <sbagmeijer@ulyaoth.net>
+Packager:   Sjir Bagmeijer <sjir.bagmeijer@ulyaoth.net>
 Source0:    http://luajit.org/download/LuaJIT-%{version}.tar.gz
 BuildRoot:  %{_tmppath}/luajit-%{version}-%{release}-root-%(%{__id_u} -n)
 
@@ -49,7 +49,7 @@ The openssl-luajit package contains static libraries needed for static linking o
 make %{?_smp_mflags}
 
 %install
-make DESTDIR=$RPM_BUILD_ROOT PREFIX=/usr install
+make DESTDIR=$RPM_BUILD_ROOT PREFIX=/usr INSTALL_LIB=$RPM_BUILD_ROOT%{_libdir} install
 
 %clean
 %{__rm} -rf $RPM_BUILD_ROOT
@@ -76,24 +76,24 @@ make DESTDIR=$RPM_BUILD_ROOT PREFIX=/usr install
 %doc /usr/share/man/man1/luajit.1.gz
 
 %files libs
-/usr/lib/libluajit-5.1.so
-/usr/lib/libluajit-5.1.so.2
-/usr/lib/libluajit-5.1.so.2.0.5
+%{_libdir}/libluajit-5.1.so
+%{_libdir}/libluajit-5.1.so.2
+%{_libdir}/libluajit-5.1.so.2.0.5
 
 %files devel
-/usr/lib/libluajit-5.1.so
-/usr/lib/libluajit-5.1.so.2
-/usr/lib/libluajit-5.1.so.2.0.5
+%{_libdir}/libluajit-5.1.so
+%{_libdir}/libluajit-5.1.so.2
+%{_libdir}/libluajit-5.1.so.2.0.5
 /usr/include/luajit-2.0/lauxlib.h
 /usr/include/luajit-2.0/lua.h
 /usr/include/luajit-2.0/lua.hpp
 /usr/include/luajit-2.0/luaconf.h
 /usr/include/luajit-2.0/luajit.h
 /usr/include/luajit-2.0/lualib.h
-/usr/lib/pkgconfig/luajit.pc
+%{_libdir}/pkgconfig/luajit.pc
 
 %files static
-/usr/lib/libluajit-5.1.a
+%{_libdir}/libluajit-5.1.a
 
 %post
 /sbin/ldconfig

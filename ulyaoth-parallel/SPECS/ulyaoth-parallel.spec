@@ -2,7 +2,7 @@
 
 Summary:    GNU parallel is a shell tool for executing jobs in parallel using one or more computers.
 Name:       ulyaoth-parallel
-Version:    20170722
+Version:    20171222
 Release:    1%{?dist}
 BuildArch: x86_64
 License:    GNUv3
@@ -70,6 +70,9 @@ make DESTDIR=$RPM_BUILD_ROOT PREFIX=/usr install
 %doc /usr/share/doc/parallel_tutorial.html
 %doc /usr/share/doc/parallel_tutorial.pdf
 %doc /usr/share/doc/parallel_tutorial.texi
+%doc /usr/share/doc/parallel_book.html
+%doc /usr/share/doc/parallel_book.pdf
+%doc /usr/share/doc/parallel_book.texi
 %doc /usr/share/doc/parcat.html
 %doc /usr/share/doc/parcat.pdf
 %doc /usr/share/doc/parcat.texi
@@ -92,6 +95,7 @@ make DESTDIR=$RPM_BUILD_ROOT PREFIX=/usr install
 %doc /usr/share/man/man7/parallel_alternatives.7.gz
 %doc /usr/share/man/man7/parallel_design.7.gz
 %doc /usr/share/man/man7/parallel_tutorial.7.gz
+%doc /usr/share/man/man7/parallel_book.7.gz
 
 %post
 /sbin/ldconfig
@@ -117,6 +121,15 @@ BANNER
 %postun
 
 %changelog
+* Fri Jan 5 2018 Sjir Bagmeijer <sjir.bagmeijer@ulyaoth.net> 20171222-1
+- Updated Parallel to 20171222.
+
+* Sun Nov 26 2017 Sjir Bagmeijer <sjir.bagmeijer@ulyaoth.net> 20171122-1
+- Updated Parallel to 20171122.
+
+* Wed Nov 8 2017 Sjir Bagmeijer <sjir.bagmeijer@ulyaoth.net> 20171022-1
+- Updated Parallel to 20171022.
+
 * Wed Aug 9 2017 Sjir Bagmeijer <sjir.bagmeijer@ulyaoth.net> 20170722-1
 - Updated Parallel to 20170722.
 

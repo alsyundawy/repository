@@ -1,15 +1,13 @@
 # This script is supposed to run as the user "ulyaoth".
 
-ulyaothos=`cat /etc/ulyaoth`
-
+# Create build environment.
 rpmdev-setuptree
-cd /home/ulyaoth/rpmbuild/SPECS/
 
+# Download spec file.
 wget https://raw.githubusercontent.com/ulyaoth/repository/master/ulyaoth-parallel/SPECS/ulyaoth-parallel.spec -O /home/ulyaoth/rpmbuild/SPECS/ulyaoth-parallel.spec
 
+# Download additional files specified in spec file.
 spectool /home/ulyaoth/rpmbuild/SPECS/ulyaoth-parallel.spec -g -R
-rpmbuild -ba /home/ulyaoth/rpmbuild/SPECS/ulyaoth-parallel.spec
 
-cp /home/ulyaoth/rpmbuild/SRPMS/* /home/ulyaoth/
-cp /home/ulyaoth/rpmbuild/RPMS/x86_64/* /home/ulyaoth/
-cp /home/ulyaoth/rpmbuild/RPMS/noarch/* /home/ulyaoth/
+# Build the rpm.
+rpmbuild -ba /home/ulyaoth/rpmbuild/SPECS/ulyaoth-parallel.spec

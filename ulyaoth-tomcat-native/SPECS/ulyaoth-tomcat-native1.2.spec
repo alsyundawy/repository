@@ -13,37 +13,32 @@ AutoReqProv: no
 
 Summary:    Tomcat native library
 Name:       ulyaoth-tomcat-native1.2
-Version:    1.2.12
+Version:    1.2.16
 Release:    1%{?dist}
 BuildArch: x86_64
 License:    Apache License version 2
 Group:      Applications/Internet
 URL:        http://tomcat.apache.org/
 Vendor:     Apache Software Foundation
-Packager:   Sjir Bagmeijer <sbagmeijer@ulyaoth.net>
+Packager:   Sjir Bagmeijer <sjir.bagmeijer@ulyaoth.net>
 Source0:    http://apache.mirrors.spacedump.net/tomcat/tomcat-connectors/native/%{version}/source/tomcat-native-%{version}-src.tar.gz
 BuildRoot:  %{_tmppath}/tomcat-native-%{version}-%{release}-root-%(%{__id_u} -n)
 
-%if 0%{?rhel}  == 6
 BuildRequires: ulyaoth-apr-devel
-%else
-BuildRequires: apr-devel >= 1.4.3
-%endif
-
-%if 0%{?fedora} >= 23
+%if 0%{?fedora} >= 26
 BuildRequires: openssl-devel
 %else
-BuildRequires: ulyaoth-openssl%{ulyaoth_openssl_version}
+BuildRequires: ulyaoth-openssl%{ulyaoth_openssl_version}-devel
 %endif
-
 BuildRequires: java-%{java_version}-openjdk-devel
 BuildRequires: jpackage-utils
 
 %if 0%{?fedora} >= 23
-Requires: openssl
+BuildRequires: openssl-devel
 %else
 Requires: ulyaoth-openssl%{ulyaoth_openssl_version}
 %endif
+Requires: ulyaoth-apr
 
 Provides:  tcnative = %{version}-%{release}
 Provides:  tomcat-native
@@ -70,18 +65,10 @@ f=CHANGELOG.txt ; iconv -f iso-8859-1 -t utf-8 $f > $f.utf8 ; mv $f.utf8 $f
 
 %build
 cd native
-
-%if 0%{?fedora} >= 23
-%configure \
-    --with-apr=%{_bindir}/apr-1-config \
-	--with-ssl=yes \
-    --with-java-home=/usr/lib/jvm/java
-%else	
 %configure \
   --with-apr=%{_bindir}/apr-1-config \
   --with-java-home=/usr/lib/jvm/java \
-  --with-ssl=/usr/local/ulyaoth/ssl/openssl%{ulyaoth_openssl_version}
-%endif
+  --with-ssl=/usr/local/ulyaoth/openssl%{ulyaoth_openssl_version}
 make %{?_smp_mflags}
 
 %install
@@ -130,6 +117,13 @@ Ulyaoth repository could use your help! Please consider a donation:
 BANNER
 
 %changelog
+* Sun Nov 26 2017 Sjir Bagmeijer <sjir.bagmeijer@ulyaoth.net> 1.2.16-1
+- Updated to Tomcat Native 1.2.16.
+
+* Sun Nov 19 2017 Sjir Bagmeijer <sjir.bagmeijer@ulyaoth.net> 1.2.14-1
+- Updated to Tomcat Native 1.2.14.
+- Fixed spec file to build with new ulyaoth-openssl structure.
+
 * Wed Mar 8 2017 Sjir Bagmeijer <sbagmeijer@ulyaoth.net> 1.2.12-1
 - Updated to Tomcat Native 1.2.12.
 - Updated to use OpenSSL 1.1.0.

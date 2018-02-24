@@ -1,5 +1,6 @@
 AutoReqProv: no
 %define debug_package %{nil}
+%define ulyaoth_openssl_version 1.1.0
 
 # distribution specific definitions
 %define use_systemd (0%{?fedora} && 0%{?fedora} >= 18) || (0%{?rhel} && 0%{?rhel} >= 7)
@@ -28,7 +29,7 @@ BuildRequires: systemd-devel
 
 Summary:    The Reliable, High Performance TCP/HTTP Load Balancer
 Name:       ulyaoth-haproxy1.7
-Version:    1.7.8
+Version:    1.7.9
 Release:    1%{?dist}
 BuildArch: x86_64
 License:    GPL/LGPL
@@ -36,7 +37,7 @@ Group:      System Environment/Daemons
 URL:        https://www.haproxy.org/
 Vendor:     HAProxy
 Packager:   Sjir Bagmeijer <sjir.bagmeijer@ulyaoth.net>
-Source0:    https://downloads.ulyaoth.net/haproxy-%{version}.tar.gz
+Source0:    http://www.haproxy.org/download/1.7/src/haproxy-%{version}.tar.gz
 Source1:    https://raw.githubusercontent.com/ulyaoth/repository/master/ulyaoth-haproxy/SOURCES/haproxy.cfg
 Source2:    https://raw.githubusercontent.com/ulyaoth/repository/master/ulyaoth-haproxy/SOURCES/haproxy.init
 Source3:    https://raw.githubusercontent.com/ulyaoth/repository/master/ulyaoth-haproxy/SOURCES/haproxy.service
@@ -44,12 +45,19 @@ BuildRoot:  %{_tmppath}/haproxy-%{version}-%{release}-root-%(%{__id_u} -n)
 
 BuildRequires: zlib-devel
 BuildRequires: pcre-devel
-BuildRequires: ulyaoth-openssl1.1.0-devel
+%if 0%{?fedora} >= 26
+BuildRequires: openssl-devel
+%else
+BuildRequires: ulyaoth-openssl%{ulyaoth_openssl_version}-devel
+%endif
 BuildRequires: ulyaoth-lua5.3-devel
 BuildRequires: ulyaoth-lua5.3-static
 
-
-Requires: ulyaoth-openssl1.1.0-libs
+%if 0%{?fedora} >= 26
+BuildRequires: openssl
+%else
+BuildRequires: ulyaoth-openssl%{ulyaoth_openssl_version}-libs
+%endif 
 Requires: pcre
 Requires: zlib
 
@@ -57,6 +65,7 @@ Provides: haproxy
 Provides: ulyaoth-haproxy
 Provides: ulyaoth-haproxy1.7
 
+Conflicts: ulyaoth-haproxy1.8
 Conflicts: ulyaoth-haproxy1.6
 Conflicts: ulyaoth-haproxy1.5
 Conflicts: ulyaoth-haproxy1.4
@@ -70,7 +79,12 @@ HAProxy is a free, very fast and reliable solution offering high availability, l
 
 %build
 
+%if 0%{?fedora} >= 26
+make PREFIX=/usr TARGET=linux2628 USE_GETADDRINFO=1 USE_LINUX_TPROXY=1 USE_PCRE=1 USE_ZLIB=1 USE_LUA=1 LUA_LIB=/usr/local/ulyaoth/lua5.3/lib64 LUA_INC=/usr/local/ulyaoth/lua5.3/include USE_OPENSSL=1 ADDLIB=-ldl
+
+%else
 make PREFIX=/usr TARGET=linux2628 USE_GETADDRINFO=1 USE_LINUX_TPROXY=1 USE_PCRE=1 USE_ZLIB=1 USE_LUA=1 LUA_LIB=/usr/local/ulyaoth/lua5.3/lib64 LUA_INC=/usr/local/ulyaoth/lua5.3/include USE_OPENSSL=1 SSL_INC=/usr/local/ulyaoth/openssl1.1.0/include SSL_LIB=/usr/local/ulyaoth/openssl1.1.0/lib ADDLIB=-ldl
+%endif 
 
 %install
 rm -rf $RPM_BUILD_ROOT
@@ -188,6 +202,9 @@ if [ $1 -ge 1 ]; then
 fi
 
 %changelog
+* Thu Nov 30 2017 Sjir Bagmeijer <sjir.bagmeijer@ulyaoth.net> 1.7.9-1
+- Updated to HAProxy 1.7.9.
+
 * Wed Aug 9 2017 Sjir Bagmeijer <sjir.bagmeijer@ulyaoth.net> 1.7.8-1
 - Updated to HAProxy 1.7.8.
 

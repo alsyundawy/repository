@@ -16,8 +16,8 @@ gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-ulyaoth
 
 [ulyaoth-source]
 name=Ulyaoth Repository (Source)
-baseurl=https://repos.ulyaoth.io/scientificlinux/$releasever/$basearch/source/
-		http://repos.ulyaoth.io/scientificlinux/$releasever/$basearch/source/
+baseurl=https://repos.ulyaoth.io/scientificlinux/$releasever/source/
+		http://repos.ulyaoth.io/scientificlinux/$releasever/source/
 enabled=0
 gpgcheck=1
 gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-ulyaoth

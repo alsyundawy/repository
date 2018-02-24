@@ -4,7 +4,7 @@
 
 Summary:    The wolfSSL embedded SSL library
 Name:       ulyaoth-wolfssl
-Version:    3.12.0
+Version:    3.13.0
 Release:    1%{?dist}
 BuildArch: x86_64
 License:    GNU General Public License
@@ -16,6 +16,10 @@ Source0: https://github.com/wolfSSL/wolfssl/archive/v%{version}-stable.tar.gz
 BuildRoot:  %{_tmppath}/wolfssl-%{version}-%{release}-root-%(%{__id_u} -n)
 
 Provides: ulyaoth-wolfssl
+
+BuildRequires: autoconf
+BuildRequires: automake
+BuildRequires: libtool
 
 %description
 The wolfSSL embedded SSL library (formerly CyaSSL) is a lightweight, portable, C-language-based SSL/TLS library targeted at IoT, embedded, and RTOS environments primarily because of its size, speed, and feature set. It works seamlessly in desktop, enterprise, and cloud environments as well. wolfSSL supports industry standards up to the current TLS 1.2 and DTLS 1.2, is up to 20 times smaller than OpenSSL, offers a simple API, an OpenSSL compatibility layer, OCSP and CRL support, is backed by the robust wolfCrypt cryptography library, and much more.
@@ -70,6 +74,12 @@ BANNER
 %postun
 
 %changelog
+* Thu Jan 4 2018 Sjir Bagmeijer <sjir.bagmeijer@ulyaoth.net> 3.13.0-1
+- Updated to wolfSSL version 3.13.0.
+
+* Wed Nov 8 2017 Sjir Bagmeijer <sjir.bagmeijer@ulyaoth.net> 3.12.2-1
+- Updated to wolfSSL version 3.12.2.
+
 * Wed Aug 9 2017 Sjir Bagmeijer <sjir.bagmeijer@ulyaoth.net> 3.12.0-1
 - Updated to wolfSSL version 3.12.0.
 
