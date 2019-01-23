@@ -3,7 +3,7 @@
 # This script is supposed to run as the user "ulyaoth".
 
 # Set version for module.
-moduleversion=0.07
+moduleversion=0.08
 develkitversion=0.3.0
 
 # create module folder used to build
@@ -48,3 +48,5 @@ rpmbuild -ba /home/ulyaoth/rpmbuild/SPECS/ulyaoth-nginx-mainline-encrypted-sessi
 
 # Clean non related rpms
 find /home/ulyaoth/rpmbuild/RPMS/x86_64/ | grep -v "encrypted" |xargs rm
+find /home/ulyaoth/rpmbuild/RPMS/noarch/ | grep -v "encrypted" |xargs rm
+find /home/ulyaoth/rpmbuild/SRPMS/ | grep -v "encrypted" |xargs rm

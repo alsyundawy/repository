@@ -3,7 +3,7 @@
 # This script is supposed to run as the user "ulyaoth".
 
 # Set version for module.
-moduleversion=0.55.3
+moduleversion=0.56
 
 # create module folder used to build
 wget https://github.com/nbs-system/naxsi/archive/$moduleversion.tar.gz
@@ -43,3 +43,5 @@ rpmbuild -ba /home/ulyaoth/rpmbuild/SPECS/ulyaoth-nginx-mainline-naxsi-module.sp
 
 # Clean non related rpms
 find /home/ulyaoth/rpmbuild/RPMS/x86_64/ | grep -v "naxsi" |xargs rm
+find /home/ulyaoth/rpmbuild/RPMS/noarch/ | grep -v "naxsi" |xargs rm
+find /home/ulyaoth/rpmbuild/SRPMS/ | grep -v "naxsi" |xargs rm

@@ -31,14 +31,14 @@ BuildRequires: systemd
 
 Summary:    Apache ZooKeeper is an effort to develop and maintain an open-source server which enables highly reliable distributed coordination.
 Name:       ulyaoth-zookeeper3.4
-Version:    3.4.11
+Version:    3.4.13
 Release:    1%{?dist}
 BuildArch: x86_64
 License:    Apache License version 2
 Group:      Applications/Internet
 URL:        https://zookeeper.apache.org/
 Vendor:     Apache Software Foundation
-Packager:   Sjir Bagmeijer <sjir.bagmeijer@ulyaoth.net>
+Packager:   Sjir Bagmeijer <sjir.bagmeijer@ulyaoth.com>
 Source0:    http://apache.mirrors.spacedump.net/zookeeper/zookeeper-%{version}/zookeeper-%{version}.tar.gz
 Source1:    https://raw.githubusercontent.com/ulyaoth/repository/master/ulyaoth-zookeeper/SOURCES/zookeeper.service
 Source2:    https://raw.githubusercontent.com/ulyaoth/repository/master/ulyaoth-zookeeper/SOURCES/zookeeper.init
@@ -178,11 +178,9 @@ Thank you for using ulyaoth-zookeeper3.4!
 Please find the official documentation for zookeeper here:
 * https://zookeeper.apache.org/
 
-For any additional help please visit our website at:
-* https://www.ulyaoth.net
-
-Ulyaoth repository could use your help! Please consider a donation:
-* https://www.ulyaoth.net/donate.html
+For any additional information or help regarding this rpm:
+Website: https://ulyaoth.com
+Forum: https://community.ulyaoth.com
 
 ----------------------------------------------------------------------
 BANNER
@@ -208,6 +206,12 @@ if [ $1 -ge 1 ]; then
 fi
 
 %changelog
+* Fri Nov 9 2018 Sjir Bagmeijer <sjir.bagmeijer@ulyaoth.com> 3.4.13-1
+- Updating to Zookeeper 3.4.13.
+
+* Wed Jun 13 2018 Sjir Bagmeijer <sjir.bagmeijer@ulyaoth.com> 3.4.12-1
+- Updating to Zookeeper 3.4.12.
+
 * Sun Nov 12 2017 Sjir Bagmeijer <sjir.bagmeijer@ulyaoth.net> 3.4.11-1
 - Updating to Zookeeper 3.4.11.
 

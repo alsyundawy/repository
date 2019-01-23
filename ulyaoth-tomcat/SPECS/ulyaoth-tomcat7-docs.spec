@@ -7,14 +7,14 @@
 
 Summary:    Apache Servlet/JSP Engine
 Name:       ulyaoth-tomcat7-docs
-Version:    7.0.82
+Version:    7.0.91
 Release:    1%{?dist}
 BuildArch: x86_64
 License:    Apache License version 2
 Group:      Applications/Internet
 URL:        http://tomcat.apache.org/
 Vendor:     Apache Software Foundation
-Packager:   Sjir Bagmeijer <sjir.bagmeijer@ulyaoth.net>
+Packager:   Sjir Bagmeijer <sjir.bagmeijer@ulyaoth.com>
 Source0:    http://apache.mirrors.spacedump.net/tomcat/tomcat-7/v%{version}/bin/apache-tomcat-%{version}.tar.gz
 BuildRoot:  %{_tmppath}/tomcat-%{version}-%{release}-root-%(%{__id_u} -n)
 
@@ -45,6 +45,9 @@ cp -R * %{buildroot}/%{tomcat_home}/
 %{__rm} -rf %{buildroot}/%{tomcat_home}/NOTICE
 %{__rm} -rf %{buildroot}/%{tomcat_home}/RELEASE-NOTES
 %{__rm} -rf %{buildroot}/%{tomcat_home}/RUNNING.txt
+%{__rm} -rf %{buildroot}/%{tomcat_home}/BUILDING.txt
+%{__rm} -rf %{buildroot}/%{tomcat_home}/CONTRIBUTING.md
+%{__rm} -rf %{buildroot}/%{tomcat_home}/README.md
 %{__rm} -rf %{buildroot}/%{tomcat_home}/temp
 %{__rm} -rf %{buildroot}/%{tomcat_home}/work
 %{__rm} -rf %{buildroot}/%{tomcat_home}/logs
@@ -70,16 +73,20 @@ Thank you for using ulyaoth-tomcat7-docs!
 Please find the official documentation for tomcat here:
 * http://tomcat.apache.org/
 
-For any additional help please visit our website at:
-* https://www.ulyaoth.net
-
-Ulyaoth repository could use your help! Please consider a donation:
-* https://www.ulyaoth.net/donate.html
+For any additional information or help regarding this rpm:
+Website: https://ulyaoth.com
+Forum: https://community.ulyaoth.com
 
 ----------------------------------------------------------------------
 BANNER
 
 %changelog
+* Fri Nov 9 2018 Sjir Bagmeijer <sjir.bagmeijer@ulyaoth.com> 7.0.91-1
+- Updated to Tomcat 7.0.91.
+
+* Wed May 23 2018 Sjir Bagmeijer <sjir.bagmeijer@ulyaoth.net> 7.0.88-1
+- Updated to Tomcat 7.0.88.
+
 * Wed Nov 15 2017 Sjir Bagmeijer <sjir.bagmeijer@ulyaoth.net> 7.0.82-1
 - Updated to Tomcat 7.0.82.
 

@@ -6,27 +6,7 @@
 %define _group System Environment/Daemons
 
 # distribution specific definitions
-%define use_systemd (0%{?fedora} && 0%{?fedora} >= 18) || (0%{?rhel} && 0%{?rhel} >= 7) || (0%{?suse_version} == 1315)
-
-%if 0%{?rhel}  == 5
-%define _group System Environment/Daemons
-Requires(pre): shadow-utils
-Requires: initscripts >= 8.36
-Requires(post): chkconfig
-BuildRequires: perl
-BuildRequires: GeoIP-devel
-%endif
-
-%if 0%{?rhel}  == 6
-%define _group System Environment/Daemons
-%define with_http2 1
-Requires(pre): shadow-utils
-Requires: initscripts >= 8.36
-Requires(post): chkconfig
-BuildRequires: perl-devel
-BuildRequires: perl-ExtUtils-Embed
-BuildRequires: GeoIP-devel
-%endif
+%define use_systemd (0%{?fedora} && 0%{?fedora} >= 18) || (0%{?rhel} && 0%{?rhel} >= 7)
 
 %if 0%{?rhel}  == 7
 %define _group System Environment/Daemons
@@ -36,6 +16,7 @@ BuildRequires: GeoIP-devel
 Epoch: %{epoch}
 Requires(pre): shadow-utils
 Requires: systemd
+BuildRequires: redhat-lsb-core
 BuildRequires: systemd
 BuildRequires: perl-devel
 BuildRequires: perl-ExtUtils-Embed
@@ -58,23 +39,11 @@ BuildRequires: clang
 BuildRequires: which
 %endif
 
-%if 0%{?suse_version} == 1315
-%define _group Productivity/Networking/Web/Servers
-%define with_http2 1
-%define nginx_loggroup trusted
-Requires(pre): shadow
-Requires: systemd
-BuildRequires: libopenssl-devel
-BuildRequires: systemd
-BuildRequires: perl
-BuildRequires: libGeoIP-devel
-%endif
-
 # end of distribution specific definitions
 
-%define main_version                 1.12.2
+%define main_version                 1.14.1
 %define main_release                 1%{?dist}.ngx
-%define njs_version                  0.1.15
+%define njs_version                  0.2.5
 %define module_xslt_version          %{main_version}
 %define module_xslt_release          1%{?dist}.ngx
 %define module_geoip_version         %{main_version}
@@ -86,11 +55,12 @@ BuildRequires: libGeoIP-devel
 %define module_njs_version           %{main_version}.%{njs_version}
 %define module_njs_release           1%{?dist}.ngx
 %define module_echo_version  0.61
-%define module_echo_release  2%{?dist}
+%define module_echo_release  4%{?dist}
 
 %define bdir %{_builddir}/nginx-%{main_version}/%{name}-%{main_version}
 
-%define WITH_CC_OPT $(echo %{optflags} $(pcre-config --cflags))
+%define WITH_CC_OPT $(echo %{optflags} $(pcre-config --cflags)) -fPIC
+%define WITH_LD_OPT -Wl,-z,relro -Wl,-z,now -pie
 
 %define COMMON_CONFIGURE_ARGS $(echo "\
         --prefix=%{_sysconfdir}/nginx \
@@ -145,7 +115,7 @@ Release: %{main_release}
 Vendor: Nginx, Inc.
 URL: http://nginx.org/
 Group: %{_group}
-Packager: Sjir Bagmeijer <sjir.bagmeijer@ulyaoth.net>
+Packager: Sjir Bagmeijer <sjir.bagmeijer@ulyaoth.com>
 
 Source0: http://nginx.org/download/nginx-%{version}.tar.gz
 Source1: https://raw.githubusercontent.com/ulyaoth/repository/master/ulyaoth-nginx/SOURCES/logrotate
@@ -491,11 +461,9 @@ Please find the official documentation for nginx here:
 Commercial subscriptions for nginx are available on:
 * http://nginx.com/products/
 
-For any additional help please visit our website at:
-* https://www.ulyaoth.net
-
-Ulyaoth repository could use your help! Please consider a donation:
-* https://www.ulyaoth.net/donate.html
+For any additional information or help regarding this rpm:
+Website: https://ulyaoth.com
+Forum: https://community.ulyaoth.com
 
 ----------------------------------------------------------------------
 BANNER
@@ -531,11 +499,9 @@ and reload nginx:
 Please refer to the module documentation for further details:
 http://nginx.org/en/docs/http/ngx_http_xslt_module.html
 
-For any additional help please visit our website at:
-* https://www.ulyaoth.net
-
-Ulyaoth repository could use your help! Please consider a donation:
-* https://www.ulyaoth.net/donate.html
+For any additional information or help regarding this rpm:
+Website: https://ulyaoth.com
+Forum: https://community.ulyaoth.com
 
 ----------------------------------------------------------------------
 BANNER
@@ -556,11 +522,9 @@ and reload nginx:
 Please refer to the module documentation for further details:
 http://nginx.org/en/docs/http/ngx_http_geoip_module.html
 
-For any additional help please visit our website at:
-* https://www.ulyaoth.net
-
-Ulyaoth repository could use your help! Please consider a donation:
-* https://www.ulyaoth.net/donate.html
+For any additional information or help regarding this rpm:
+Website: https://ulyaoth.com
+Forum: https://community.ulyaoth.com
 
 ----------------------------------------------------------------------
 BANNER
@@ -580,11 +544,9 @@ and reload nginx:
 Please refer to the module documentation for further details:
 http://nginx.org/en/docs/http/ngx_http_image_filter_module.html
 
-For any additional help please visit our website at:
-* https://www.ulyaoth.net
-
-Ulyaoth repository could use your help! Please consider a donation:
-* https://www.ulyaoth.net/donate.html
+For any additional information or help regarding this rpm:
+Website: https://ulyaoth.com
+Forum: https://community.ulyaoth.com
 
 ----------------------------------------------------------------------
 BANNER
@@ -604,11 +566,9 @@ and reload nginx:
 Please refer to the module documentation for further details:
 http://nginx.org/en/docs/http/ngx_http_perl_module.html
 
-For any additional help please visit our website at:
-* https://www.ulyaoth.net
-
-Ulyaoth repository could use your help! Please consider a donation:
-* https://www.ulyaoth.net/donate.html
+For any additional information or help regarding this rpm:
+Website: https://ulyaoth.com
+Forum: https://community.ulyaoth.com
 
 ----------------------------------------------------------------------
 BANNER
@@ -629,11 +589,9 @@ and reload nginx:
 Please refer to the module documentation for further details:
 https://www.nginx.com/resources/wiki/nginScript/
 
-For any additional help please visit our website at:
-* https://www.ulyaoth.net
-
-Ulyaoth repository could use your help! Please consider a donation:
-* https://www.ulyaoth.net/donate.html
+For any additional information or help regarding this rpm:
+Website: https://ulyaoth.com
+Forum: https://community.ulyaoth.com
 
 ----------------------------------------------------------------------
 BANNER
@@ -653,11 +611,9 @@ and reload nginx:
 Please refer to the module documentation for further details:
 https://github.com/openresty/echo-nginx-module
 
-For any additional help please visit our website at:
-* https://www.ulyaoth.net
-
-Ulyaoth repository could use your help! Please consider a donation:
-* https://www.ulyaoth.net/donate.html
+For any additional information or help regarding this rpm:
+Website: https://ulyaoth.com
+Forum: https://community.ulyaoth.com
 
 ----------------------------------------------------------------------
 BANNER
@@ -686,6 +642,12 @@ if [ $1 -ge 1 ]; then
 fi
 
 %changelog
+* Fri Nov 9 2018 Sjir Bagmeijer <sjir.bagmeijer@ulyaoth.com> 0.61-4
+- Updated nginx to 1.14.1.
+
+* Wed May 23 2018 Sjir Bagmeijer <sjir.bagmeijer@ulyaoth.com> 0.61-3
+- Updated nginx to 1.14.0.
+
 * Sat Jan 6 2018 Sjir Bagmeijer <sjir.bagmeijer@ulyaoth.net> 0.61-2
 - Updated nginx to 1.12.2.
 

@@ -25,3 +25,6 @@ export QA_RPATHS=$[ 0x0001|0x0002 ]
 
 # Build the rpm.
 rpmbuild -ba /home/ulyaoth/rpmbuild/SPECS/ulyaoth-nginx-mainline.spec 
+
+# Remove NJS.
+rm -rf /home/ulyaoth/rpmbuild/RPMS/x86_64/ulyaoth-nginx-mainline-module-njs-*

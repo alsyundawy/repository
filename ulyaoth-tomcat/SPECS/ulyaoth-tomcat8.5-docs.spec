@@ -7,14 +7,14 @@
 
 Summary:    Apache Servlet/JSP Engine
 Name:       ulyaoth-tomcat8.5-docs
-Version:    8.5.24
+Version:    8.5.35
 Release:    1%{?dist}
 BuildArch: x86_64
 License:    Apache License version 2
 Group:      Applications/Internet
 URL:        https://tomcat.apache.org/
 Vendor:     Apache Software Foundation
-Packager:   Sjir Bagmeijer <sjir.bagmeijer@ulyaoth.net>
+Packager:   Sjir Bagmeijer <sjir.bagmeijer@ulyaoth.com>
 Source0:    http://apache.mirrors.spacedump.net/tomcat/tomcat-8/v%{version}/bin/apache-tomcat-%{version}.tar.gz
 BuildRoot:  %{_tmppath}/tomcat-%{version}-%{release}-root-%(%{__id_u} -n)
 
@@ -45,6 +45,9 @@ cp -R * %{buildroot}/%{tomcat_home}/
 %{__rm} -rf %{buildroot}/%{tomcat_home}/NOTICE
 %{__rm} -rf %{buildroot}/%{tomcat_home}/RELEASE-NOTES
 %{__rm} -rf %{buildroot}/%{tomcat_home}/RUNNING.txt
+%{__rm} -rf %{buildroot}/%{tomcat_home}/BUILDING.txt
+%{__rm} -rf %{buildroot}/%{tomcat_home}/CONTRIBUTING.md
+%{__rm} -rf %{buildroot}/%{tomcat_home}/README.md
 %{__rm} -rf %{buildroot}/%{tomcat_home}/temp
 %{__rm} -rf %{buildroot}/%{tomcat_home}/work
 %{__rm} -rf %{buildroot}/%{tomcat_home}/logs
@@ -70,16 +73,23 @@ Thank you for using ulyaoth-tomcat8.5-docs!
 Please find the official documentation for tomcat here:
 * https://tomcat.apache.org/
 
-For any additional help please visit our website at:
-* https://www.ulyaoth.net
-
-Ulyaoth repository could use your help! Please consider a donation:
-* https://www.ulyaoth.net/donate.html
+For any additional information or help regarding this rpm:
+Website: https://ulyaoth.com
+Forum: https://community.ulyaoth.com
 
 ----------------------------------------------------------------------
 BANNER
 
 %changelog
+* Mon Nov 12 2018 Sjir Bagmeijer <sjir.bagmeijer@ulyaoth.com> 8.5.35-1
+- Updating to Tomcat 8.5.35.
+
+* Fri Nov 9 2018 Sjir Bagmeijer <sjir.bagmeijer@ulyaoth.com> 8.5.34-1
+- Updating to Tomcat 8.5.34.
+
+* Wed May 23 2018 Sjir Bagmeijer <sjir.bagmeijer@ulyaoth.net> 8.5.31-1
+- Updating to Tomcat 8.5.31.
+
 * Fri Jan 5 2018 Sjir Bagmeijer <sjir.bagmeijer@ulyaoth.net> 8.5.24-1
 - Updating to Tomcat 8.5.24.
 

@@ -3,7 +3,7 @@
 # This script is supposed to run as the user "ulyaoth".
 
 # Set version for module.
-moduleversion=5.1.12
+moduleversion=5.3.6
 
 # Get the passenger version 
 passenger5()
@@ -58,3 +58,6 @@ rpmbuild -ba /home/ulyaoth/rpmbuild/SPECS/ulyaoth-nginx-mainline-passenger5-modu
 
 # Clean non related rpms
 find /home/ulyaoth/rpmbuild/RPMS/x86_64/ | grep -v "passenger5" |xargs rm
+find /home/ulyaoth/rpmbuild/RPMS/noarch/ | grep -v "passenger5" |xargs rm
+find /home/ulyaoth/rpmbuild/SRPMS/ | grep -v "passenger5" |xargs rm
+find /home/ulyaoth/rpmbuild/SRPMS/ | grep -v "passenger5" |xargs rm

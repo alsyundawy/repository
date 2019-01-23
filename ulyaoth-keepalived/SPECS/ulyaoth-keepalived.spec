@@ -19,15 +19,15 @@ Requires: systemd
 
 Summary:    Keepalived a LVS driving daemon.
 Name:       ulyaoth-keepalived
-Version:    1.4.0
+Version:    1.4.5
 Release:    1%{?dist}
 BuildArch: x86_64
 License:    GPLv2
 Group:      System Environment/Daemons
 URL:        https://github.com/acassen/keepalived
 Vendor:     Alexandre Cassen
-Packager:   Sjir Bagmeijer <sjir.bagmeijer@ulyaoth.net>
-Source0:    https://downloads.ulyaoth.net/v%{version}.tar.gz
+Packager:   Sjir Bagmeijer <sjir.bagmeijer@ulyaoth.com>
+Source0:    https://github.com/acassen/keepalived/archive/v%{version}.tar.gz
 Source2:    https://raw.githubusercontent.com/ulyaoth/repository/master/ulyaoth-keepalived/SOURCES/keepalived.init
 Source3:    https://raw.githubusercontent.com/ulyaoth/repository/master/ulyaoth-keepalived/SOURCES/keepalived.service
 BuildRoot:  %{_tmppath}/keepalived-%{version}-%{release}-root-%(%{__id_u} -n)
@@ -127,11 +127,9 @@ Thank you for using ulyaoth-keepalived!
 Please find the official documentation for keepalived here:
 * https://github.com/acassen/keepalived
 
-For any additional help please visit our website at:
-* https://www.ulyaoth.net
-
-Ulyaoth repository could use your help! Please consider a donation:
-* https://www.ulyaoth.net/donate.html
+For any additional information or help regarding this rpm:
+Website: https://ulyaoth.com
+Forum: https://community.ulyaoth.com
 
 ----------------------------------------------------------------------
 BANNER
@@ -160,6 +158,12 @@ if [ $1 -ge 1 ]; then
 fi
 
 %changelog
+* Wed Jun 13 2018 Sjir Bagmeijer <sjir.bagmeijer@ulyaoth.com> 1.4.5-1
+- Updated Keepalived to 1.4.5.
+
+* Wed May 23 2018 Sjir Bagmeijer <sjir.bagmeijer@ulyaoth.net> 1.4.4-1
+- Updated Keepalived to 1.4.4.
+
 * Fri Jan 5 2018 Sjir Bagmeijer <sjir.bagmeijer@ulyaoth.net> 1.4.0-1
 - Updated Keepalived to 1.4.0.
 
